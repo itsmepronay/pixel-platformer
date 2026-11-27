@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/touch_controls.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ui/btn_left.png" id="2_left"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ui/btn_left_pressed.png" id="3_left_p"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ui/btn_right.png" id="4_right"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ui/btn_right_pressed.png" id="5_right_p"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ui/btn_jump.png" id="6_jump"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ui/btn_jump_pressed.png" id="7_jump_p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_touch"]
+size = Vector2(56, 56)
+
+[node name="TouchControls" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_script")
+
+[node name="HudRoot" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BottomLeft" type="Control" parent="HudRoot"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = -64.0
+offset_right = 128.0
+offset_bottom = -16.0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="LeftButton" type="TouchScreenButton" parent="HudRoot/BottomLeft"]
+texture_normal = ExtResource("2_left")
+texture_pressed = ExtResource("3_left_p")
+shape = SubResource("RectangleShape2D_touch")
+passby_press = true
+action = "move_left"
+
+[node name="RightButton" type="TouchScreenButton" parent="HudRoot/BottomLeft"]
+position = Vector2(60, 0)
+texture_normal = ExtResource("4_right")
+texture_pressed = ExtResource("5_right_p")
+shape = SubResource("RectangleShape2D_touch")
+passby_press = true
+action = "move_right"
+
+[node name="BottomRight" type="Control" parent="HudRoot"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -64.0
+offset_right = -16.0
+offset_bottom = -16.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="JumpButton" type="TouchScreenButton" parent="HudRoot/BottomRight"]
+texture_normal = ExtResource("6_jump")
+texture_pressed = ExtResource("7_jump_p")
+shape = SubResource("RectangleShape2D_touch")
+action = "jump"
